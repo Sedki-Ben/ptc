@@ -1,21 +1,28 @@
-import './App.css';
+import { Routes, Route, Link } from 'react-router-dom';
 import { FiSearch, FiArrowRight } from 'react-icons/fi';
+import Home from './pages/Home';
+import Analysis from './pages/Analysis';
+import Stories from './pages/Stories';
+import NotableWork from './pages/NotableWork';
+import Archive from './pages/Archive';
+import About from './pages/About';
+import './App.css';
 
 function App() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
+      {/* Header - Reusable across all pages */}
       <header className="px-6 py-4 border-b border-gray-200">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <h1 className="text-xl font-serif font-bold">MY FOOTBALL JOURNAL</h1>
+          <Link to="/" className="text-xl font-serif font-bold">MY FOOTBALL JOURNAL</Link>
           
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="/" className="text-gray-700 hover:text-gray-900">Home</a>
-            <a href="/analysis" className="text-gray-700 hover:text-gray-900">Analysis</a>
-            <a href="/stories" className="text-gray-700 hover:text-gray-900">Stories</a>
-            <a href="/notable-work" className="text-gray-700 hover:text-gray-900">Notable Work</a>
-            <a href="/archive" className="text-gray-700 hover:text-gray-900">Archive</a>
-            <a href="/about" className="text-gray-700 hover:text-gray-900">About</a>
+            <Link to="/" className="text-gray-700 hover:text-gray-900">Home</Link>
+            <Link to="/analysis" className="text-gray-700 hover:text-gray-900">Analysis</Link>
+            <Link to="/stories" className="text-gray-700 hover:text-gray-900">Stories</Link>
+            <Link to="/notable-work" className="text-gray-700 hover:text-gray-900">Notable Work</Link>
+            <Link to="/archive" className="text-gray-700 hover:text-gray-900">Archive</Link>
+            <Link to="/about" className="text-gray-700 hover:text-gray-900">About</Link>
           </nav>
 
           <div className="flex items-center space-x-6">
@@ -25,60 +32,22 @@ function App() {
             <button className="px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-800">
               Subscribe
             </button>
-            <a href="/signin" className="text-gray-700 hover:text-gray-900">Sign In</a>
+            <Link to="/signin" className="text-gray-700 hover:text-gray-900">Sign In</Link>
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative h-[60vh] bg-gradient-to-r from-gray-900 to-gray-700">
-        <div className="absolute inset-0 bg-black/50"></div>
-        <div className="relative max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
-          <h2 className="text-5xl md:text-6xl font-serif text-white mb-4">
-            The Beautiful Game Through My Lens
-          </h2>
-          <p className="text-xl text-gray-200 mb-8 max-w-2xl">
-            Analysis, stories, and insights from the world of football
-          </p>
-          <button className="flex items-center space-x-2 px-6 py-3 bg-white text-gray-900 rounded-md hover:bg-gray-100 w-fit">
-            <span>Read the Latest</span>
-            <FiArrowRight />
-          </button>
-        </div>
-      </section>
-
-      {/* Most Popular Section */}
-      <section className="py-16 px-6">
-        <div className="max-w-7xl mx-auto">
-          <h3 className="text-2xl font-serif mb-8">Most Popular</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((item) => (
-              <article key={item} className="group cursor-pointer">
-                <div className="aspect-video bg-gray-200 mb-4 overflow-hidden">
-                  <div className="w-full h-full bg-gray-300"></div>
-                </div>
-                <h4 className="font-serif text-xl mb-2 group-hover:text-blue-900">
-                  Article Headline Placeholder
-                </h4>
-                <p className="text-sm text-gray-600">
-                  John Doe • January 1, 2024
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Analysis & Stories Sections (Commented out for future use)
-      <section className="py-16 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center mb-8">
-            <h3 className="text-2xl font-serif">Analysis</h3>
-            <a href="/analysis" className="text-blue-900 hover:text-blue-800">View All</a>
-          </div>
-        </div>
-      </section>
-      */}
+      {/* Main Content - Dynamic based on route */}
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/analysis" element={<Analysis />} />
+          <Route path="/stories" element={<Stories />} />
+          <Route path="/notable-work" element={<NotableWork />} />
+          <Route path="/archive" element={<Archive />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </main>
     </div>
   );
 }
